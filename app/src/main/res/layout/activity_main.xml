@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.jaroid.android50_databinding.User" />
+
+        <variable
+            name="vehicle"
+            type="com.jaroid.android50_databinding.Vehicle" />
+
+        <variable
+            name="clickHandler"
+            type="com.jaroid.android50_databinding.MainActivity.ClickHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/v1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/v2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/h1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/h1"
+            app:layout_constraintEnd_toStartOf="@id/v2"
+            app:layout_constraintStart_toEndOf="@id/v1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User name"
+                android:text="@{user.userName}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:text="@{user.address}"
+                app:layout_constraintEnd_toStartOf="@id/v2"
+                app:layout_constraintStart_toEndOf="@id/v1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Age"
+                android:text="@{vehicle.mVehicleName}"
+                app:layout_constraintEnd_toStartOf="@id/v2"
+                app:layout_constraintStart_toEndOf="@id/v1"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v2"
+            app:layout_constraintStart_toEndOf="@id/v1"
+            app:layout_constraintTop_toBottomOf="@id/h1">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Edit User name"
+                android:minHeight="48dp"
+                android:text="@={user.userName}" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vehile name"
+                android:text="@={vehicle.mVehicleName}"
+                app:layout_constraintEnd_toStartOf="@id/v2"
+                app:layout_constraintStart_toEndOf="@id/v1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{clickHandler::saveClick}"
+                android:text="save" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v)->clickHandler.saveClickData(v,vehicle.mVehicleName)}"
+                android:text="save with data" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
